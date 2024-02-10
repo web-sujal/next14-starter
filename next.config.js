@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
+
+const hostnames = ["media.tenor.com", "images.unsplash.com"];
+
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "media.tenor.com",
-      },
-    ],
+    remotePatterns: hostnames.map((hostname) => ({
+      protocol: "https",
+      hostname,
+    })),
   },
 };
 
