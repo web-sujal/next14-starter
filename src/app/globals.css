@@ -22,6 +22,11 @@ a {
   color: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  background: gray;
+}
+
 .container {
   width: 1536px;
   margin: auto;
