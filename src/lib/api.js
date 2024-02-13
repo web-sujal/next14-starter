@@ -1,5 +1,6 @@
 import { Post, User } from "./models";
 import { connectDb } from "./utils";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const getPosts = async () => {
   try {
@@ -17,7 +18,7 @@ export const getPosts = async () => {
 export const getPost = async (slug) => {
   try {
     connectDb();
-    const post = await Post.find({ slug });
+    const post = await Post.findOne({ slug });
     if (!post) throw new Error("Failed to fetch post data.");
 
     return post;
@@ -28,6 +29,7 @@ export const getPost = async (slug) => {
 };
 
 export const getUser = async (id) => {
+  noStore();
   try {
     connectDb();
     const user = await User.findById(id);
