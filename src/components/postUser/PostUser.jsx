@@ -1,4 +1,4 @@
-import { getUser } from "@/lib/api";
+import { getUser } from "@/lib/data";
 import styles from "./postUser.module.css";
 import Image from "next/image";
 

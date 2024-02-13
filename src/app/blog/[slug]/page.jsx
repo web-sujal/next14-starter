@@ -2,7 +2,8 @@ import Image from "next/image";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/PostUser";
 import { Suspense } from "react";
-import { getPost } from "@/lib/api";
+import { getPost } from "@/lib/data";
+import { Noto_Sans_Gunjala_Gondi } from "next/font/google";
 
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
@@ -15,10 +16,25 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+// Fetch data using api
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) throw new Error("Something went wrong");
+
+  return res.json();
+};
+
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  const post = await getPost(slug);
+  // fetch data with api
+  const post = await getData(slug);
+
+  // fetch data without api
+  // const post = await getPost(slug);
 
   return (
     <div className={styles.container}>
