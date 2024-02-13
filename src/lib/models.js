@@ -45,13 +45,13 @@ const postSchema = new Schema(
       type: String,
     },
     userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
+      required: true,
     },
     slug: {
       type: String,
-      required: true,
       unique: true,
+      required: true,
     },
   },
   { timestamps: true }
