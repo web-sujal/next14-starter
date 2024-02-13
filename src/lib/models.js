@@ -45,8 +45,8 @@ const postSchema = new Schema(
       type: String,
     },
     userId: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     slug: {
       type: String,
